@@ -4,7 +4,7 @@ import { ISignatureAlgorithm } from "./algorithm";
 import * as Alg from "./algorithms";
 import { RsaPssBase } from "./algorithms";
 import { CryptoConfig } from "./crypto_config";
-import { KeyInfo, Reference, References, Signature, SignedInfo, Transform as XmlTransform, Transforms as XmlTransforms, XmlDsigC14NWithCommentsTransform, XmlDsigExcC14NWithCommentsTransform } from "./xml";
+import { KeyInfo, Reference, References, Signature, SignedInfo, Transform as XmlTransform, Transforms as XmlTransforms, XmlDsigC14NWithCommentsTransform, XmlDsigDisplayFilterTransform, XmlDsigExcC14NWithCommentsTransform } from "./xml";
 import { KeyInfoX509Data, KeyValue } from "./xml/key_infos";
 import * as KeyInfos from "./xml/key_infos";
 import * as Transforms from "./xml/transforms";
@@ -544,7 +544,7 @@ export class SignedXml implements XmlCore.IXmlSerializable {
 
         transforms.Sort((a, b) => {
             const c14nTransforms = [Transforms.XmlDsigC14NTransform, XmlDsigC14NWithCommentsTransform,
-            Transforms.XmlDsigExcC14NTransform, XmlDsigExcC14NWithCommentsTransform];
+            Transforms.XmlDsigExcC14NTransform, XmlDsigExcC14NWithCommentsTransform, XmlDsigDisplayFilterTransform];
             if (c14nTransforms.some((t) => a instanceof t)) {
                 return 1;
             }
